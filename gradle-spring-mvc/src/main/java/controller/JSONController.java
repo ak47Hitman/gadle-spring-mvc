@@ -1,9 +1,13 @@
 package controller;
 
+import java.util.Locale;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import object.Task;
 
@@ -17,7 +21,12 @@ import object.Task;
 @RestController
 public class JSONController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping({ "/", "/home" })
+	public ModelAndView showHomePage(Locale locale, Model model) {
+		return new ModelAndView("index");
+	}
+
+	@RequestMapping(value = "/getTask", method = RequestMethod.GET)
 	public @ResponseBody Task getShopInJSON() {
 		Task shop = new Task(12L, "123");
 		return shop;

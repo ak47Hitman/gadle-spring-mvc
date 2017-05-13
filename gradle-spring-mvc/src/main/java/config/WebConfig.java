@@ -3,12 +3,15 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.BeanNameViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import controller.JSONController;
@@ -32,13 +35,30 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return view;
 	}
 
-	@Bean
-	public ViewResolver viewResolver() {
-		return new BeanNameViewResolver();
+	@Override
+	public void addResourceHandlers(final ResourceHandlerRegistry reg) {
+		reg.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
 
 	@Override
-	public void addResourceHandlers(final ResourceHandlerRegistry reg) {
-		reg.addResourceHandler("/**").addResourceLocations("/");
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/error").setViewName("error.html");
+		registry.addViewController("/index").setViewName("index");
+		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+	}
+
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		super.configurePathMatch(configurer);
+		configurer.setUseSuffixPatternMatch(false);
+	}
+
+	@Bean
+	public InternalResourceViewResolver viewResolver() {
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setViewClass(JstlView.class);
+		viewResolver.setPrefix("/WEB-INF/views/");
+		viewResolver.setSuffix(".html");
+		return viewResolver;
 	}
 }
