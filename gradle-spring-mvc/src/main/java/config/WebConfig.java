@@ -57,6 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
+		// viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setPrefix("/static/views/");
 		viewResolver.setSuffix(".html");
 		return viewResolver;
