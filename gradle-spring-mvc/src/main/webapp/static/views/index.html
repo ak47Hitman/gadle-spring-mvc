@@ -6,59 +6,68 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 </head>
-
-<body ng-app="myapp">
-	<div>
-		<h2>Login page</h2>
-	</div>
-	<div ng-controller="HelloController">
-		<h2>Welcome {{helloTo.title}} to the world of Tutorialspoint!</h2>
-	</div>
-
+<body ng-app="textInputExample">
 	<script>
-		angular.module("myapp", [])
-
-		.controller("HelloController", function($scope) {
-			$scope.helloTo = {};
-			$scope.helloTo.title = "AngularJS";
-		});
+		angular.module('textInputExample', []).controller('ExampleController',
+				[ '$scope', function($scope) {
+					$scope.example = {
+						text : 'guest',
+						word : /^\s*\w*\s*$/
+					};
+				} ]);
 	</script>
+	<form name="myForm" ng-controller="ExampleController">
+		<div>
+			<label>Login page</label>
+		</div>
+		<div>
+			<div>
+				<label>Login: </label>
+			</div>
+			<div>
+				<input type="text" name="input" ng-model="example.text"
+					ng-pattern="example.word" required ng-trim="false">
+			</div>
+		</div>
+		<div>
+			<div>
+				<label>Password: </label>
+			</div>
+			<div>
+				<input type="text" name="input2" ng-model="example.text"
+					ng-pattern="example.word" required ng-trim="false">
+			</div>
 
+		</div>
+		<div role="alert">
+			<span class="error" ng-show="myForm.input.$error.required">
+				Required!</span> <span class="error" ng-show="myForm.input.$error.pattern">
+				Single word only!</span>
+		</div>
+
+		<code>text = {{example.text}}</code>
+		<br />
+		<code>myForm.input.$valid = {{myForm.input.$valid}}</code>
+		<br />
+		<code>myForm.input.$error = {{myForm.input.$error}}</code>
+		<br />
+		<code>myForm.$valid = {{myForm.$valid}}</code>
+		<br />
+		<code>myForm.$error.required = {{!!myForm.$error.required}}</code>
+		<br />
+
+		<button ng-click="myFunc()">Sign in</button>
+		<p>The button has been clicked {{count}} times.</p>
+
+		<script>
+			angular.module('textInputExample', []).controller(
+					'ExampleController', [ '$scope', function($scope) {
+						$scope.count = 0;
+						$scope.myFunc = function() {
+							$scope.count++;
+						};
+					} ]);
+		</script>
+	</form>
 </body>
 </html>
-
-<!-- <!doctype html> -->
-<!-- <html ng-app> -->
-<!-- <head> -->
-<!-- <title>Login page.</title> -->
-<!-- <script -->
-<!-- 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script> -->
-<!-- </head> -->
-<!-- <body> -->
-<!-- 	<div> -->
-<!-- 		<label>Login page:</label> <input type="text" ng-model="yourName" -->
-<!-- 			placeholder="Enter your name"> -->
-<!-- 		<hr> -->
-<!-- 		<h1>Name {{yourName}}!</h1> -->
-<!-- 	</div> -->
-<!-- </body> -->
-<!-- </html> -->
-
-<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> -->
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<!-- <title>Spring and Angularjs Tutorial</title> -->
-<!-- <script -->
-<!-- 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script> -->
-<!-- </head> -->
-<!-- <body> -->
-<!-- 	<h2>Spring and Angularjs Tutorial</h2> -->
-<!-- 	<div class="home-section"> -->
-<!-- 		<ul class="menu-list"> -->
-<!-- 			<li><a href="#/gallery">Photo Gallery</a></li> -->
-<!-- 			<li><a href="#/contactus">Contact</a></li> -->
-<!-- 		</ul> -->
-<!-- 	</div> -->
-<!-- </body> -->
-<!-- </html> -->
