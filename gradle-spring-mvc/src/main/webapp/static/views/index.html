@@ -5,17 +5,10 @@
 <title>Login page</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<!-- <script type="text/javascript" src="static/js/alert.js"></script> -->
+
 </head>
 <body ng-app="textInputExample">
-	<script>
-		angular.module('textInputExample', []).controller('ExampleController',
-				[ '$scope', function($scope) {
-					$scope.example = {
-						text : 'guest',
-						word : /^\s*\w*\s*$/
-					};
-				} ]);
-	</script>
 	<form name="myForm" ng-controller="ExampleController">
 		<div>
 			<label>Login page</label>
@@ -25,49 +18,44 @@
 				<label>Login: </label>
 			</div>
 			<div>
-				<input type="text" name="input" ng-model="example.text"
-					ng-pattern="example.word" required ng-trim="false">
+				<input type="text" name="login" ng-model="example.login">
 			</div>
+			<!-- 			<div> -->
+			<!-- 				<input type="text" name="input" ng-model="example.text" -->
+			<!-- 					ng-pattern="example.word" required ng-trim="false"> -->
+			<!-- 			</div> -->
 		</div>
+
 		<div>
 			<div>
 				<label>Password: </label>
 			</div>
 			<div>
-				<input type="text" name="input2" ng-model="example.text"
-					ng-pattern="example.word" required ng-trim="false">
+				<input type="text" name="password" ng-model="example.password">
 			</div>
-
 		</div>
-		<div role="alert">
-			<span class="error" ng-show="myForm.input.$error.required">
-				Required!</span> <span class="error" ng-show="myForm.input.$error.pattern">
-				Single word only!</span>
-		</div>
+		<!-- 		<div> -->
+		<!-- 			<div> -->
+		<!-- 				<label>Password: </label> -->
+		<!-- 			</div> -->
+		<!-- 			<div> -->
+		<!-- 				<input type="text" name="input2" ng-model="example.text" -->
+		<!-- 					ng-pattern="example.word" required ng-trim="false"> -->
+		<!-- 			</div> -->
 
-		<code>text = {{example.text}}</code>
-		<br />
-		<code>myForm.input.$valid = {{myForm.input.$valid}}</code>
-		<br />
-		<code>myForm.input.$error = {{myForm.input.$error}}</code>
-		<br />
-		<code>myForm.$valid = {{myForm.$valid}}</code>
-		<br />
-		<code>myForm.$error.required = {{!!myForm.$error.required}}</code>
-		<br />
+		<!-- 		</div> -->
+		<!-- 		<div role="alert"> -->
+		<!-- 			<span class="error" ng-show="myForm.input.$error.required"> -->
+		<!-- 				Required!</span> <span class="error" ng-show="myForm.input.$error.pattern"> -->
+		<!-- 				Single word only!</span> -->
+		<!-- 		</div> -->
+
+		<code>text = {{example.login}}</code>
 
 		<button ng-click="myFunc()">Sign in</button>
 		<p>The button has been clicked {{count}} times.</p>
-
-		<script>
-			angular.module('textInputExample', []).controller(
-					'ExampleController', [ '$scope', function($scope) {
-						$scope.count = 0;
-						$scope.myFunc = function() {
-							$scope.count++;
-						};
-					} ]);
-		</script>
 	</form>
+	<!-- 	<script type="text/javascript" src="static/js/guest.js"></script> -->
+	<script type="text/javascript" src="static/js/textinput.js"></script>
 </body>
 </html>
