@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.ui.Model;
@@ -27,8 +29,18 @@ public class JSONController {
 	}
 
 	@RequestMapping(value = "/task", method = RequestMethod.GET)
-	public @ResponseBody Task getShopInJSON() {
+	public @ResponseBody Task getTask() {
 		Task shop = new Task(12L, "Content");
 		return shop;
+	}
+
+	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
+	public @ResponseBody List<Task> getTasks() {
+		List<Task> tasks = new ArrayList<>();
+		tasks.add(new Task(12L, "Content"));
+		tasks.add(new Task(13L, "Content2"));
+		tasks.add(new Task(14L, "Content3"));
+
+		return tasks;
 	}
 }

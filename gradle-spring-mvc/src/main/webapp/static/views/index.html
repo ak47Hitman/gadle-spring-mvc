@@ -1,71 +1,45 @@
 <!doctype html>
-<html>
+<html ng-app="tasksApp">
 
 <head>
 <title>Login page</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
-<!-- <script type="text/javascript" src="static/js/alert.js"></script> -->
-<!-- <script type="text/javascript" src="static/js/totasks.js"></script> -->
+<script src="static/js/controllers/task.js"></script>
+<script src="static/js/controllers/tasks.js"></script>
+<style type="text/css">
+.navBardemoBasicUsage md-content .ext-content {
+	padding: 50px;
+	margin: 20px;
+	background-color: #FFF2E0;
+}
+</style>
 </head>
-<body ng-app="textInputExample">
-	<form name="myForm" ng-controller="ExampleController">
-		<div>
-			<label>Login page</label>
+<body>
+	<div ng-controller="taskController">
+		<p>The ID is {{task.id}}</p>
+		<p>The content is {{task.content}}</p>
+	</div>
+	<div ng-controller="tasksController" ng-cloak=""
+		class="navBardemoBasicUsage">
+		<ul>
+			<li ng-repeat="task in tasks"><b>Id: {{task.id}}</b>
+				<p>Content: {{task.content}}</p>
+		</ul>
+		<md-content class="md-padding"> <md-nav-bar
+			md-selected-nav-item="currentNavItem"
+			nav-bar-aria-label="navigation links"> <md-nav-item
+			md-nav-click="goto('page1')" name="page1">Page One</md-nav-item> <md-nav-item
+			md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item> <md-nav-item
+			md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item> <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+      <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+      <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+      --> </md-nav-bar>
+		<div class="ext-content">
+			External content for `<span>{{currentNavItem}}</span>`
 		</div>
-		<div>
-			<div>
-				<label>Login: </label>
-			</div>
-			<div>
-				<input type="text" name="login" ng-model="example.login">
-			</div>
-			<!-- 			<div> -->
-			<!-- 				<input type="text" name="input" ng-model="example.text" -->
-			<!-- 					ng-pattern="example.word" required ng-trim="false"> -->
-			<!-- 			</div> -->
-		</div>
+		</md-content>
+	</div>
 
-		<div>
-			<div>
-				<label>Password: </label>
-			</div>
-			<div>
-				<input type="text" name="password" ng-model="example.password">
-			</div>
-		</div>
-		<!-- 		<div> -->
-		<!-- 			<div> -->
-		<!-- 				<label>Password: </label> -->
-		<!-- 			</div> -->
-		<!-- 			<div> -->
-		<!-- 				<input type="text" name="input2" ng-model="example.text" -->
-		<!-- 					ng-pattern="example.word" required ng-trim="false"> -->
-		<!-- 			</div> -->
-
-		<!-- 		</div> -->
-		<!-- 		<div role="alert"> -->
-		<!-- 			<span class="error" ng-show="myForm.input.$error.required"> -->
-		<!-- 				Required!</span> <span class="error" ng-show="myForm.input.$error.pattern"> -->
-		<!-- 				Single word only!</span> -->
-		<!-- 		</div> -->
-
-		<code>text = {{example.login}}</code>
-
-		<button ng-click="goLogin()">Log in</button>
-		<button ng-click="myFunc()">Sign in</button>
-		<button ng-click="redirect()">Click</button>
-		<button ng-click="clicked()">Click</button>
-		<button class="button button-icon ion-compose"
-			ng-click="create('tab.newpost')">a</button>
-		<button class="button button-icon ion-compose" ui-sref="tab.newpost">b</button>
-		<button class="button button-icon ion-compose" href="/tab/newpost">c</button>
-		<button class="button button-icon ion-compose"
-			ng-click="location.path('/tab/newpost')">d</button>
-		<p>The button has been clicked {{count}} times.</p>
-
-	</form>
-	<!-- 	<script type="text/javascript" src="static/js/guest.js"></script> -->
-	<script type="text/javascript" src="static/js/textinput.js"></script>
 </body>
 </html>

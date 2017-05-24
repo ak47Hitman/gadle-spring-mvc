@@ -44,7 +44,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/error").setViewName("error.html");
 		registry.addViewController("/index").setViewName("index");
-		registry.addViewController("/tasks").setViewName("tasks");
+		registry.addViewController("/mytasks").setViewName("mytasks");
 		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	}
 
