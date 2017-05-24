@@ -26,9 +26,9 @@ public class JSONController {
 		return new ModelAndView("index");
 	}
 
-	// @RequestMapping(value = "/getTask", method = RequestMethod.GET)
-	// public @ResponseBody Task getShopInJSON() {
-	// Task shop = new Task(12L, "123");
-	// return shop;
-	// }
+	@RequestMapping(value = "/task", method = RequestMethod.GET)
+	public @ResponseBody Task getShopInJSON() {
+		Task shop = new Task(12L, "Content");
+		return shop;
+	}
 }

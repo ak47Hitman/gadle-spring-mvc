@@ -6,7 +6,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 <!-- <script type="text/javascript" src="static/js/alert.js"></script> -->
-
+<!-- <script type="text/javascript" src="static/js/totasks.js"></script> -->
 </head>
 <body ng-app="textInputExample">
 	<form name="myForm" ng-controller="ExampleController">
@@ -52,8 +52,18 @@
 
 		<code>text = {{example.login}}</code>
 
+		<button ng-click="goLogin()">Log in</button>
 		<button ng-click="myFunc()">Sign in</button>
+		<button ng-click="redirect()">Click</button>
+		<button ng-click="clicked()">Click</button>
+		<button class="button button-icon ion-compose"
+			ng-click="create('tab.newpost')">a</button>
+		<button class="button button-icon ion-compose" ui-sref="tab.newpost">b</button>
+		<button class="button button-icon ion-compose" href="/tab/newpost">c</button>
+		<button class="button button-icon ion-compose"
+			ng-click="location.path('/tab/newpost')">d</button>
 		<p>The button has been clicked {{count}} times.</p>
+
 	</form>
 	<!-- 	<script type="text/javascript" src="static/js/guest.js"></script> -->
 	<script type="text/javascript" src="static/js/textinput.js"></script>
