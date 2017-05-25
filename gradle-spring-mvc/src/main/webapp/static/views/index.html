@@ -7,39 +7,46 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 <script src="static/js/controllers/task.js"></script>
 <script src="static/js/controllers/tasks.js"></script>
-<style type="text/css">
-.navBardemoBasicUsage md-content .ext-content {
-	padding: 50px;
-	margin: 20px;
-	background-color: #FFF2E0;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="static/css/task.css">
 </head>
 <body>
 	<div ng-controller="taskController">
-		<p>The ID is {{task.id}}</p>
-		<p>The content is {{task.content}}</p>
+		<div class="navbar" id="home">
+			<a href="#home">Home</a> <a href="#todo">ToDo</a> <a href="#tasks">Tasks</a><a
+				href="#about">About</a>
+		</div>
+		<div>
+			<p>The ID is {{task.id}}</p>
+			<p>The content is {{task.content}}</p>
+		</div>
+		<div class="test">
+			<br />asdasd <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br />
+		</div>
+		<div id="news">asdasd12121212</div>
 	</div>
-	<div ng-controller="tasksController" ng-cloak=""
-		class="navBardemoBasicUsage">
+	<div ng-controller="tasksController" ng-cloak="" class="navBardemoBasicUsage">
 		<ul>
 			<li ng-repeat="task in tasks"><b>Id: {{task.id}}</b>
 				<p>Content: {{task.content}}</p>
 		</ul>
 		<md-content class="md-padding"> <md-nav-bar
-			md-selected-nav-item="currentNavItem"
-			nav-bar-aria-label="navigation links"> <md-nav-item
-			md-nav-click="goto('page1')" name="page1">Page One</md-nav-item> <md-nav-item
-			md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item> <md-nav-item
-			md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item> <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
-      <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
-      <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
-      --> </md-nav-bar>
-		<div class="ext-content">
+			md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+		<md-nav-item md-nav-click="goto('page1')" name="page1">Page One</md-nav-item>
+		<md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
+		<md-nav-item md-nav-click="goto('page3')" name="page3">Page
+		Three</md-nav-item> </md-nav-bar> <!-- 		<div class="ext-content"> -->
+		<div id="home">
 			External content for `<span>{{currentNavItem}}</span>`
 		</div>
 		</md-content>
 	</div>
+
+
 
 </body>
 </html>
