@@ -17,156 +17,102 @@
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <!-- Task scripts -->
 <script src="static/js/controllers/task.js"></script>
-<script src="static/js/controllers/tasks.js"></script>
+<!-- <script src="static/js/controllers/tasks.js"></script> -->
 <!-- Stylesheets -->
 <!-- Angular Material style sheet -->
-<link rel="stylesheet"
+<link
+	rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <!-- Task stylesheets -->
-<link rel="stylesheet" type="text/css" href="static/css/task.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="static/css/task.css">
+<!-- ng-cloak stylesheets  -->
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="static/css/ng-cloak.css">
 </head>
-<body>
+<body ng-cloak>
 	<div class="main">
-		<div class="top" id="home">
-			<div class="navbar">
-				<a href="#home">Home</a> <a href="#todo">ToDo</a> <a href="#tasks">Tasks</a><a
-					href="#news">News</a><a href="#about">About</a>
+		<md-toolbar class="md-warn">
+		<div class="navbar">
+			<a href="#home">Home</a>
+			<a href="#todo">ToDo</a>
+			<a href="#tasks">Tasks</a>
+			<a href="#news">News</a>
+			<a href="#about">About</a>
+		</div>
+		</md-toolbar>
+
+		<div ng-controller="taskController">
+
+			<md-content
+				flex
+				layout-padding>
+			<form
+				name="taskForm"
+				ng-submit="submitTask()">
+
+				<section
+					layout="row"
+					layout-sm="column"
+					layout-align="center center"
+					layout-wrap>
+
+					<md-input-container flex="50"> <label>Task</label>
+
+					<input
+						required
+						name="content"
+						ng-model="task.content">
+
+					<div ng-messages="taskForm.content.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+
+					</md-input-container>
+
+					<md-button
+						type="submit"
+						class="md-raised">Add task</md-button>
+				</section>
+			</form>
+
+
+			<div>
+				<p>The ID is {{task.id}}</p>
+				<p>The content is {{task.content}}</p>
 			</div>
+
+			</md-content>
 		</div>
 
-		<div class="middle">
-			<div ng-controller="taskController">
-				<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-				<div>
-					<input type="button" value="Send"
-						ng-click="postdata(name, age, adress)" /> <br />
-					<br />
-					<md-input-container> <label>Title</label> <input
-						ng-model="user.title"> </md-input-container>
-
-					<md-input-container> <label>Email</label> <input
-						ng-model="user.email" type="email"> </md-input-container>
-				</div>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button>{{title1}}</md-button>
-					<md-button md-no-ink class="md-primary">Primary
-					(md-noink)</md-button>
-					<md-button ng-disabled="true" class="md-primary">Disabled</md-button>
-					<md-button class="md-warn">{{title4}}</md-button>
-					<div class="label">Flat</div>
-				</section>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button class="md-raised">Button</md-button>
-					<md-button class="md-raised md-primary">Primary</md-button>
-					<md-button ng-disabled="true" class="md-raised md-primary">Disabled</md-button>
-					<md-button class="md-raised md-warn">Warn</md-button>
-					<div class="label">Raised</div>
-				</section>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button class="md-fab" aria-label="Eat cake"> <md-icon
-						md-svg-src="static/img/icons/cake.svg"></md-icon> </md-button>
-
-					<md-button class="md-fab md-primary" aria-label="Use Android">
-					<md-icon md-svg-src="static/img/icons/android.svg"></md-icon> </md-button>
-
-					<md-button class="md-fab" ng-disabled="true" aria-label="Comment">
-					<md-icon md-svg-src="static/img/icons/ic_comment_24px.svg"></md-icon>
-					</md-button>
-
-					<md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
-					<md-icon md-svg-src="static/img/icons/ic_people_24px.svg"></md-icon>
-					</md-button>
-
-					<md-button class="md-fab md-mini" aria-label="Eat cake">
-					<md-icon md-svg-src="static/img/icons/cake.svg"></md-icon> </md-button>
-
-					<md-button class="md-fab md-mini md-primary"
-						aria-label="Use Android"> <md-icon
-						md-svg-src="static/img/icons/android.svg"
-						style="color: greenyellow;"></md-icon> </md-button>
-					<div class="label">FAB</div>
-				</section>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button ng-href="{{googleUrl}}" target="_blank">Default
-					Link</md-button>
-					<md-button class="md-primary" ng-href="{{googleUrl}}"
-						target="_blank">Primary Link</md-button>
-
-					<md-button>Default Button</md-button>
-					<div class="label">Link vs. Button</div>
-				</section>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button class="md-primary md-hue-1">Primary Hue 1</md-button>
-					<md-button class="md-warn md-raised md-hue-2">Warn Hue
-					2</md-button>
-					<md-button class="md-accent">Accent</md-button>
-					<md-button class="md-accent md-raised md-hue-1">Accent
-					Hue 1</md-button>
-					<div class="label">Themed</div>
-				</section>
-
-				<section layout="row" layout-sm="column"
-					layout-align="center center" layout-wrap>
-					<md-button class="md-icon-button md-primary" aria-label="Settings">
-					<md-icon md-svg-icon="static/img/icons/menu.svg"></md-icon> </md-button>
-					<md-button class="md-icon-button md-accent" aria-label="Favorite">
-					<md-icon md-svg-icon="static/img/icons/favorite.svg"></md-icon> </md-button>
-					<md-button class="md-icon-button" aria-label="More"> <md-icon
-						md-svg-icon="static/img/icons/more_vert.svg"></md-icon> </md-button>
-					<md-button href="http://google.com"
-						title="Launch Google.com in new window" target="_blank"
-						ng-disabled="true" aria-label="Google.com"
-						class="md-icon-button launch"> <md-icon
-						md-svg-icon="static/img/icons/launch.svg"></md-icon> </md-button>
-					<div class="label">Icon Button</div>
-				</section>
-				</md-content>
-
-				<div>
-					<p>The ID is {{task.id}}</p>
-					<p>The content is {{task.content}}</p>
-				</div>
-				<div class="test">
-					<br />asdasd <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br /> <br />
-				</div>
-				<div id="news">asdasd12121212</div>
-			</div>
-
-			<div ng-controller="tasksController" ng-cloak=""
-				class="navBardemoBasicUsage">
-				<ul>
-					<li ng-repeat="task in tasks"><b>Id: {{task.id}}</b>
-						<p>Content: {{task.content}}</p>
-				</ul>
-				<md-content class="md-padding"> <md-nav-bar
-					md-selected-nav-item="currentNavItem"
-					nav-bar-aria-label="navigation links"> <md-nav-item
-					md-nav-click="goto('page1')" name="page1">Page One</md-nav-item> <md-nav-item
-					md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item> <md-nav-item
-					md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>
-				</md-nav-bar> <!-- 		<div class="ext-content"> -->
-				<div id="todo">
-					External content for `<span>{{currentNavItem}}</span>`
-				</div>
-				</md-content>
-			</div>
-		</div>
+		<!-- 		<div -->
+		<!-- 			ng-controller="tasksController" -->
+		<!-- 			class="navBardemoBasicUsage"> -->
+		<!-- 			<ul> -->
+		<!-- 				<li ng-repeat="task in tasks"> -->
+		<!-- 					<b>Id: {{task.id}}</b> -->
+		<!-- 					<p>Content: {{task.content}}</p> -->
+		<!-- 			</ul> -->
+		<!-- 			<md-content class="md-padding"> <md-nav-bar -->
+		<!-- 				md-selected-nav-item="currentNavItem" -->
+		<!-- 				nav-bar-aria-label="navigation links"> <md-nav-item -->
+		<!-- 				md-nav-click="goto('page1')" -->
+		<!-- 				name="page1">Page One</md-nav-item> <md-nav-item -->
+		<!-- 				md-nav-click="goto('page2')" -->
+		<!-- 				name="page2">Page Two</md-nav-item> <md-nav-item -->
+		<!-- 				md-nav-click="goto('page3')" -->
+		<!-- 				name="page3">Page Three</md-nav-item> </md-nav-bar> 		<div class="ext-content"> -->
+		<!-- 			<div id="todo"> -->
+		<!-- 				External content for ` -->
+		<!-- 				<span>{{currentNavItem}}</span> -->
+		<!-- 				` -->
+		<!-- 			</div> -->
+		<!-- 			</md-content> -->
+		<!-- 		</div> -->
 	</div>
 </body>
 </html>

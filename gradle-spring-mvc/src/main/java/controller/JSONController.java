@@ -38,33 +38,17 @@ public class JSONController {
 		return shop;
 	}
 
-	// @RequestMapping(value = "/settasks", method = RequestMethod.POST,
-	// params="hasCustomerName=true")
-	// @RequestMapping(value = "/settasks", method = RequestMethod.POST)
-	// public String postDelivery(
-	// @ModelAttribute("deliveryDtoAttribute") DeliveryDto deliveryDto,
-	// BindingResult result,
-	// ModelMap model) {
-	//
-	// model.addAttribute("deliveryDtoAttribute", deliveryDto);
-	//
-	// model.addAttribute("customerNameList",
-	// customerService.listAllCustomerNames());
-	// model.addAttribute("customerCountryList",
-	// customerService.listAllCustomerCountries(deliveryDto.getCustomerName()));
-	//
-	// return "new-delivery";
-	// }
-
-	@RequestMapping(value = "/settasks", method = RequestMethod.POST)
-	public String updateHosting(@RequestBody String atrr) {
-		tasks.add(new Task(122L, atrr));
-		return "SET" + atrr;
+	@RequestMapping(value = "/posttask", method = RequestMethod.POST)
+	// public String postTask(@RequestBody String atrr) {
+	public Task postTask(@RequestBody String atrr) {
+		System.out.println("Content1: " + atrr.toString());
+		tasks.add(new Task(1L, atrr));
+		System.out.println("Content: " + atrr);
+		return new Task(1L, atrr);
 	}
 
 	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
 	public @ResponseBody List<Task> getTasks() {
-		// List<Task> tasks = new ArrayList<>();
 		tasks.add(new Task(12L, "Content"));
 		tasks.add(new Task(13L, "Content2"));
 		tasks.add(new Task(14L, "Content3"));
