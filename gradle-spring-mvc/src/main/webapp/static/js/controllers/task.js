@@ -1,87 +1,70 @@
-var taskApp = angular.module('tasksApp', [ 'ngAnimate', 'ngMaterial' ]);
+angular
+		.module('tasksApp', [ 'ngAnimate', 'ngMaterial' ])
+		.config(
+				function($mdThemingProvider) {
+					$mdThemingProvider.theme('default').primaryPalette('pink')
+							.accentPalette('orange');
+				})
+		.controller(
+				'taskController',
+				function($scope, $http) {
+					$scope.submitTask = function() {
+						if ($scope.task.content) {
+							$http
+									.post('/gradle-spring-mvc/posttask',
+											angular.toJson($scope.task.content))
+									.then(
+											function(response) {
+												if (response.data) {
 
-taskApp.config(function($mdThemingProvider) {
-	$mdThemingProvider.theme('default').primaryPalette('pink').accentPalette(
-			'orange');
-});
+													// // ADD A NEW ELEMENT.
+													// $book.list.push({ name:
+													// $book.name, price:
+													// $book.price
+													$scope.tasks
+															.push(response.data);
+													$scope.msg = "Post Data Submitted Successfully!";
+												}
+											},
+											function(response) {
+												$scope.msg = "Service not Exists";
+											});
 
-// function postTask($scope, $http, data) {
-// $http.post('/gradle-spring-mvc/settasks', JSON.parse(JSON.stringify(data)))
-// .then(function(response) {
-// if (response.data)
-// $scope.msg = "Post Data Submitted Successfully!";
-// }, function(response) {
-// $scope.msg = "Service not Exists";
-// $scope.statusval = response.status;
-// $scope.statustext = response.statusText;
-// $scope.headers = response.headers();
-// });
-// }
-
-// function getTasks($scope, $http) {
-// $http.get('/gradle-spring-mvc/task').then(function(response) {
-// $scope.task = response.data;
-// });
-//
-// $scope.name = null;
-// $scope.name = 'test1';
-// $scope.age = null;
-// $scope.age = 'test2';
-// $scope.adress = null;
-// $scope.adress = 'test3';
-// $scope.lblMsg = null;
-// $scope.postdata = function(name, age, adress) {
-//
-// var data = {
-// name : name,
-// age : age,
-// adress : adress
-// };
-//
-// // Call the services
-// // JSON.stringify(data)
-// postTask($scope, $http, data);
-// };
-//
-// $scope.user = {
-// title : 'Developer',
-// email : 'ipsum@lorem.com',
-// firstName : '',
-// lastName : '',
-// company : 'Google',
-// address : '1600 Amphitheatre Pkwy',
-// city : 'Mountain View',
-// state : 'CA',
-// biography : 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd
-// rumor has it she bouldered up Castle Craig!',
-// postalCode : '94043'
-// };
-//
-// $scope.title1 = 'Button';
-// $scope.title4 = 'Warn';
-// $scope.isDisabled = true;
-//
-// $scope.googleUrl = 'http://google.com';
-// }
-
-taskApp.controller('taskController', function($scope, $http) {
-	$scope.submitTask = function() {
-		if ($scope.task.content) {
-			$http.post('/gradle-spring-mvc/posttask',
-					angular.toJson($scope.task.content)).then(
-					function(response) {
-						if (response.data) {
-							$scope.msg = "Post Data Submitted Successfully!";
+							$scope.task.content = '';
 						}
-					}, function(response) {
-						$scope.msg = "Service not Exists";
-					});
-			$scope.task.content = '';
-		}
-	};
+					};
 
-	// getTasks($scope, $http);
-});
+					$http.get('/gradle-spring-mvc/gettasks').then(
+							function(response) {
+								$scope.tasks = response.data;
+							});
+
+					$scope.messages = [ {
+						id : 1,
+						title : "Message A",
+						selected : false
+					}, {
+						id : 2,
+						title : "Message B",
+						selected : true
+					}, {
+						id : 3,
+						title : "Message C",
+						selected : true
+					}, ];
+
+					$scope.doSecondaryAction = function(event) {
+						$mdDialog
+								.show($mdDialog
+										.alert()
+										.title('Secondary Action')
+										.textContent(
+												'Secondary actions can be used for one click actions')
+										.ariaLabel('Secondary click demo').ok(
+												'Neat!').targetEvent(event));
+					};
+
+				});
 
 // var app = angular.module('myapp', []);
 //
